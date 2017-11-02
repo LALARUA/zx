@@ -1,0 +1,136 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : 本地
+Source Server Version : 50720
+Source Host           : localhost:3306
+Source Database       : 来换网
+
+Target Server Type    : MYSQL
+Target Server Version : 50720
+File Encoding         : 65001
+
+Date: 2017-11-02 23:19:04
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `公告`
+-- ----------------------------
+DROP TABLE IF EXISTS `公告`;
+CREATE TABLE `公告` (
+  `公告ID` varchar(20) NOT NULL,
+  `管理员ID` varchar(20) DEFAULT NULL,
+  `公告内容` varchar(100) DEFAULT NULL,
+  `公告标题` varchar(20) DEFAULT NULL,
+  `发布时间` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`公告ID`),
+  KEY `管理员ID` (`管理员ID`),
+  CONSTRAINT `管理员ID` FOREIGN KEY (`管理员ID`) REFERENCES `管理员` (`管理员ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 公告
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `商品`
+-- ----------------------------
+DROP TABLE IF EXISTS `商品`;
+CREATE TABLE `商品` (
+  `商品ID` varchar(20) NOT NULL,
+  `商品名` varchar(20) DEFAULT NULL,
+  `商品类别` varchar(20) DEFAULT NULL,
+  `想换商品类别` varchar(20) DEFAULT NULL,
+  `图片文件` varchar(20) DEFAULT NULL,
+  `用户ID` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`商品ID`),
+  KEY `用户ID` (`用户ID`),
+  CONSTRAINT `用户ID` FOREIGN KEY (`用户ID`) REFERENCES `用户` (`用户名`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 商品
+-- ----------------------------
+INSERT INTO `商品` VALUES ('321', '1', '1', '1', '1', 'zhangsan');
+
+-- ----------------------------
+-- Table structure for `用户`
+-- ----------------------------
+DROP TABLE IF EXISTS `用户`;
+CREATE TABLE `用户` (
+  `用户名` varchar(20) NOT NULL,
+  `密码` varchar(20) DEFAULT NULL,
+  `用户昵称` varchar(100) DEFAULT NULL,
+  `邮箱` varchar(20) DEFAULT NULL,
+  `性别` varchar(20) DEFAULT NULL,
+  `商品ID` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`用户名`),
+  KEY `用户名` (`用户名`),
+  KEY `商品ID` (`商品ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 用户
+-- ----------------------------
+INSERT INTO `用户` VALUES ('lisi', '654321', '44', 'xxx', 'M', '321');
+INSERT INTO `用户` VALUES ('zhangsan', '123456', '33', 'xxx', 'M', '123');
+
+-- ----------------------------
+-- Table structure for `留言`
+-- ----------------------------
+DROP TABLE IF EXISTS `留言`;
+CREATE TABLE `留言` (
+  `留言编号` varchar(20) NOT NULL,
+  `留言用户` varchar(20) DEFAULT NULL,
+  `留言内容` varchar(100) DEFAULT NULL,
+  `所属商品ID` varchar(20) DEFAULT NULL,
+  `留言时间` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`留言编号`),
+  KEY `留言用户` (`留言用户`),
+  KEY `所属商品ID` (`所属商品ID`),
+  CONSTRAINT `所属商品ID` FOREIGN KEY (`所属商品ID`) REFERENCES `商品` (`商品ID`),
+  CONSTRAINT `留言用户` FOREIGN KEY (`留言用户`) REFERENCES `用户` (`用户名`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 留言
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `管理员`
+-- ----------------------------
+DROP TABLE IF EXISTS `管理员`;
+CREATE TABLE `管理员` (
+  `管理员ID` varchar(20) NOT NULL,
+  `管理员密码` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`管理员ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 管理员
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `订单`
+-- ----------------------------
+DROP TABLE IF EXISTS `订单`;
+CREATE TABLE `订单` (
+  `订单编号` varchar(20) NOT NULL,
+  `用户自己` varchar(20) DEFAULT NULL,
+  `对方` varchar(20) DEFAULT NULL,
+  `自己商品` varchar(20) DEFAULT NULL,
+  `对方商品` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`订单编号`),
+  KEY `商品ID1` (`自己商品`),
+  KEY `商品ID2` (`对方商品`),
+  KEY `用户ID2` (`对方`),
+  KEY `用户自己` (`用户自己`),
+  CONSTRAINT `用户自己` FOREIGN KEY (`用户自己`) REFERENCES `用户` (`用户名`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of 订单
+-- ----------------------------
+INSERT INTO `订单` VALUES ('1', 'zhangsan', '1', '1', '1');
