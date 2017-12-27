@@ -1,0 +1,58 @@
+body
+{
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+.top
+{
+	width: 1200px;
+	height: 30px;
+	background-color: pink;
+}
+.login
+{
+	width: 500px;
+	height: 30px;
+	background-color: green;
+	float: left;
+}
+.indexpage
+{
+	width: 120px;
+	height: 25px;
+	background-color: gray;
+	float: left;
+	margin-left: 100px;
+}
+.myhref
+{
+	width: 200px;
+	height: 30px;
+	float: right;
+	background-color: #E9AE6A;
+}
+.content
+{
+	padding: 5px;
+	
+	margin-top: 10px;
+	height: 120px;
+}
+.logo
+{
+	float: left;
+	width: 200px;
+	height: 100px;
+	background-color: yellow;
+	
+}
+.navi
+{
+	float: right;
+	width: 800px;
+	height: 100px;
+	background-color: red;
+
+}
