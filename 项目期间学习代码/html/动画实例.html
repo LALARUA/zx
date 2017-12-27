@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Document</title>
+	<style type="text/css">
+	.div
+	{
+		text-align: center;
+	}
+	p
+	{
+		font-size: 80px;
+		color: yellow;
+		text-shadow: 5px 5px 5px red;
+		opacity: 0.6
+	}
+	html:hover p
+	{
+		transition-duration: 2000ms;
+		opacity: 0;
+	}
+	.img
+	{
+
+		margin-top: 200px;
+		width: 300px;
+		height: 300px;
+	}
+	html:hover .img
+	{
+		
+		animation-name: pp;
+		animation-duration: 1000ms;
+		animation-fill-mode: forwards;
+	}
+	@keyframes pp
+	{
+		to
+		{
+			margin-top: 0px;
+			width: 80px;
+		height: 80px;
+		}
+	}
+		.
+	</style>
+</head>
+<body>
+	<div class="div">
+
+		<img src="5.jpg" class="img">
+        <p>花花</p>
+	</div>
+	
+</body>
+</html>
